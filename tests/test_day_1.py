@@ -8,4 +8,6 @@ def test_part_1(day_1_input):
 
 
 def test_part_2(day_1_input):
-    assert True
+    solver = Day1(day_1_input)
+
+    assert solver.part_2() == 5
