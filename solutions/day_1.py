@@ -90,10 +90,11 @@ In this example, there are 5 sums that are larger than the previous sum.
 
 Consider sums of a three-measurement sliding window. How many sums are larger than the previous sum?
 """
+from pathlib import Path
 
 
 class Day1(object):
-    def __init__(self, input_file_path):
+    def __init__(self, input_file_path: Path):
 
         with open(input_file_path, "r") as f:
             self.measurements = [int(n) for n in f.readlines()]
@@ -102,7 +103,7 @@ class Day1(object):
         increases = 0
 
         for i, measurement in enumerate(self.measurements[1:], start=1):
-            if measurement > self.measurements[i-1]:
+            if measurement > self.measurements[i - 1]:
                 increases += 1
 
         return increases
@@ -112,8 +113,8 @@ class Day1(object):
 
         prev_sum = sum(self.measurements[:3])
         window_start = 1
-        while window_start+3 <= len(self.measurements):
-            curr_sum = sum(self.measurements[window_start:window_start+3])
+        while window_start + 3 <= len(self.measurements):
+            curr_sum = sum(self.measurements[window_start : window_start + 3])
             if prev_sum < curr_sum:
                 increases += 1
             window_start += 1

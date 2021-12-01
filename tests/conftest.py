@@ -1,8 +1,10 @@
+from pathlib import Path
+
 import pytest
 
 
 @pytest.fixture(scope="function")
-def day_1_input(tmp_path):
+def day_1_input(tmp_path: Path) -> Path:
     p = tmp_path / "input.txt"
     content = [
         "199",

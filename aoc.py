@@ -7,9 +7,9 @@ from solutions import (
 
 
 @click.command()
-@click.argument("day", type=click.STRING)
-@click.argument("part", type=click.INT)
-def run(day, part):
+@click.argument("day", type=int)
+@click.argument("part", type=int)
+def run(day: int, part: int) -> None:
     solver = getattr(globals()[f"day_{day}"], f"Day{day}")(f"data/day_{day}.txt")
     print(getattr(solver, f"part_{part}")())
 
