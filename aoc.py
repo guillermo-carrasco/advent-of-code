@@ -3,6 +3,7 @@ import click
 
 from solutions import (
     day_1,
+    day_2,
 )
 
 

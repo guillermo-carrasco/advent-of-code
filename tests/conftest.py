@@ -21,3 +21,19 @@ def day_1_input(tmp_path: Path) -> Path:
     p.write_text("\n".join(content))
 
     return p
+
+
+@pytest.fixture(scope="function")
+def day_2_input(tmp_path: Path) -> Path:
+    p = tmp_path / "input.txt"
+    content = [
+        "forward 5",
+        "down 5",
+        "forward 8",
+        "up 3",
+        "down 8",
+        "forward 2",
+    ]
+    p.write_text("\n".join(content))
+
+    return p
