@@ -12,4 +12,4 @@ def test_part_1(day_2_input: Path) -> None:
 def test_part_2(day_2_input: Path) -> None:
     solver = Day2(day_2_input)
 
-    assert solver.part_2() == None
+    assert solver.part_2() == 900
