@@ -37,3 +37,25 @@ def day_2_input(tmp_path: Path) -> Path:
     p.write_text("\n".join(content))
 
     return p
+
+
+@pytest.fixture(scope="function")
+def day_3_input(tmp_path: Path) -> Path:
+    p = tmp_path / "input.txt"
+    content = [
+        "00100",
+        "11110",
+        "10110",
+        "10111",
+        "10101",
+        "01111",
+        "00111",
+        "11100",
+        "10000",
+        "11001",
+        "00010",
+        "01010",
+    ]
+    p.write_text("\n".join(content))
+
+    return p
