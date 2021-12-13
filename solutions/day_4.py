@@ -126,17 +126,7 @@ class Day4(object):
 
         return last_num * score
 
-    def part_1(self):
-        for n in self.bingo_numbers:
-            for board_index in range(self.n_boards):
-                positions = self.check_number_in_board(board_index, n)
-                # If there are matches, mark them and immediately check for completeness after marking them
-                for row, col in positions:
-                    self.mark(board_index, row, col)
-                    if self.check_row_complete(board_index, row) or self.check_column_complete(board_index, col):
-                        return self.score(board_index, n)
-
-    def part_2(self):
+    def _play_bingo(self, first_win=True):
         already_won = set()
         score = -1
         for n in self.bingo_numbers:
@@ -147,7 +137,15 @@ class Day4(object):
                     for row, col in positions:
                         self.mark(board_index, row, col)
                         if self.check_row_complete(board_index, row) or self.check_column_complete(board_index, col):
-                            score = self.score(board_index, n)
-                            already_won.add(board_index)
-
+                            if first_win:
+                                return self.score(board_index, n)
+                            else:
+                                score = self.score(board_index, n)
+                                already_won.add(board_index)
         return score
+
+    def part_1(self):
+        return self._play_bingo(first_win=True)
+
+    def part_2(self):
+        return self._play_bingo(first_win=False)
