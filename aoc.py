@@ -10,7 +10,9 @@ from solutions import (
 @click.argument("day", type=int)
 @click.argument("part", type=int)
 def run(day: int, part: int) -> None:
-    solver = getattr(globals()[f"day_{day}"], f"Day{day}")(f"data/day_{day}.txt")
+    with open(f"data/day_{day}.txt", 'r') as f:
+        text = f.readlines()
+    solver = getattr(globals()[f"day_{day}"], f"Day{day}")(text)
     print(getattr(solver, f"part_{part}")())
 
 

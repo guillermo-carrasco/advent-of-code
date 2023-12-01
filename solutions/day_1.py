@@ -21,32 +21,82 @@ treb7uchet
 In this example, the calibration values of these four lines are 12, 38, 15, and 77. Adding these together produces 142.
 
 Consider your entire calibration document. What is the sum of all of the calibration values?
+
+--- Part Two ---
+Your calculation isn't quite right. It looks like some of the digits are actually spelled out with letters: one, two, three, four, five, six, seven, eight, and nine also count as valid "digits".
+
+Equipped with this new information, you now need to find the real first and last digit on each line. For example:
+
+two1nine
+eightwothree
+abcone2threexyz
+xtwone3four
+4nineeightseven2
+zoneight234
+7pqrstsixteen
+
+In this example, the calibration values are 29, 83, 13, 24, 42, 14, and 76. Adding these together produces 281.
+
+What is the sum of all of the calibration values?
 """
 from pathlib import Path
+from typing import List
 
 
 class Day1(object):
-    def __init__(self, input_file_path: Path):
+    def __init__(self, text: List[str]):
 
-        with open(input_file_path, "r") as f:
-            self.calibration_document = f.readlines()
+        self.calibration_document = text
+        
+        self.digits = {
+            'one': '1',
+            'two': '2',
+            'three': '3',
+            'four': '4',
+            'five': '5',
+            'six': '6',
+            'seven': '7',
+            'eight': '8',
+            'nine': '9'
+        }
 
-    def part_1(self):
+    def part_1(self) -> int:
         calibration_values = []
         for calibration_line in self.calibration_document:
             first = last = None
-            for c in calibration_line:
+            for d in calibration_line:
                 try:
-                    int(c)
-                    if first is None:
-                        first = c
-                    last = c
-
+                    int(d)
+                    first = first if first is not None else d
+                    last = d
                 except ValueError:
                     continue
+
             calibration_values.append(int(first + last))
 
         return sum(calibration_values)
 
-    def part_2(self):
-        pass
+    def part_2(self) -> int:
+        calibration_values = []
+        for calibration_line in self.calibration_document:
+            first = last = None
+            for i in range(len(calibration_line)):
+                d = None
+                # Is it a digit?
+                try:
+                    int(calibration_line[i])
+                    d = calibration_line[i]
+
+                # is it any of the written digits? 
+                except ValueError:
+                    for digit_c, digit_n in self.digits.items():
+                        if digit_c == calibration_line[i:i+len(digit_c)]:
+                            d = digit_n
+                            break
+                
+                first = first if first is not None else d
+                last = d if d is not None else last
+
+            calibration_values.append(int(f"{first}{last}"))
+
+        return sum(calibration_values)
