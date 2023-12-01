@@ -39,7 +39,6 @@ In this example, the calibration values are 29, 83, 13, 24, 42, 14, and 76. Addi
 
 What is the sum of all of the calibration values?
 """
-from pathlib import Path
 from typing import List
 
 
@@ -64,12 +63,9 @@ class Day1(object):
         for calibration_line in self.calibration_document:
             first = last = None
             for d in calibration_line:
-                try:
-                    int(d)
+                if d.isdigit():
                     first = first if first is not None else d
                     last = d
-                except ValueError:
-                    continue
 
             calibration_values.append(int(first + last))
 
@@ -82,12 +78,11 @@ class Day1(object):
             for i in range(len(calibration_line)):
                 d = None
                 # Is it a digit?
-                try:
-                    int(calibration_line[i])
+                if calibration_line[i].isdigit():
                     d = calibration_line[i]
 
                 # is it any of the written digits?
-                except ValueError:
+                else:
                     for digit_c, digit_n in self.digits.items():
                         if digit_c == calibration_line[i : i + len(digit_c)]:
                             d = digit_n
