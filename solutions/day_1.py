@@ -45,19 +45,18 @@ from typing import List
 
 class Day1(object):
     def __init__(self, text: List[str]):
-
         self.calibration_document = text
-        
+
         self.digits = {
-            'one': '1',
-            'two': '2',
-            'three': '3',
-            'four': '4',
-            'five': '5',
-            'six': '6',
-            'seven': '7',
-            'eight': '8',
-            'nine': '9'
+            "one": "1",
+            "two": "2",
+            "three": "3",
+            "four": "4",
+            "five": "5",
+            "six": "6",
+            "seven": "7",
+            "eight": "8",
+            "nine": "9",
         }
 
     def part_1(self) -> int:
@@ -87,13 +86,13 @@ class Day1(object):
                     int(calibration_line[i])
                     d = calibration_line[i]
 
-                # is it any of the written digits? 
+                # is it any of the written digits?
                 except ValueError:
                     for digit_c, digit_n in self.digits.items():
-                        if digit_c == calibration_line[i:i+len(digit_c)]:
+                        if digit_c == calibration_line[i : i + len(digit_c)]:
                             d = digit_n
                             break
-                
+
                 first = first if first is not None else d
                 last = d if d is not None else last
 
