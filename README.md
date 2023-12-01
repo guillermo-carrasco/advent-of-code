@@ -1,6 +1,6 @@
-# Advent of Code 2021
+# Advent of Code 2023
 
-My Python solutions for [Advent of Code 2021](https://adventofcode.com/2021)
+My Python solutions for [Advent of Code 2023](https://adventofcode.com/2023)
 
 ## Run tests
 
