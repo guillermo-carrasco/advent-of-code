@@ -1,9 +1,7 @@
 """Advent of Code executor"""
 import click
 
-from solutions import (
-    day_1,
-)
+from solutions import day_1, day_2
 
 
 @click.command()
