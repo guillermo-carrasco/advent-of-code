@@ -20,4 +20,4 @@ class TestDay3:
         assert self.solver.part_1() == 4361
 
     def test_part_2(self) -> None:
-        assert self.solver.part_2() == 0
+        assert self.solver.part_2() == 467835
